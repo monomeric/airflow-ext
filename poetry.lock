@@ -4102,7 +4102,7 @@ files = [
 devtools = ">=0.9.0,<1"
 pydantic = ">=2,<3"
 PyYAML = ">=6,<7"
-structlog = ">=21,<=25"
+structlog = ">=21,<26"
 
 [package.extras]
 docs = ["furo (>=2022.12.7,<2025.0.0)", "myst-parser (>=0.17.2,<3.1.0)", "sphinx (>=4.5,<9.0)", "sphinx-autobuild (>=2021.3.14,<2022.0.0)", "sphinx-copybutton (>=0.3.1,<0.6.0)"]
