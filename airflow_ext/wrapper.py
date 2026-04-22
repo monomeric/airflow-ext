@@ -133,22 +133,22 @@ class Airflow(ExtensionBase):
         
         # Airflow version 2 accepts "db init" while version 3 expects "db migrate"
         try:
-            version = self.airflow_invoker.run("version")
+            proc = self.airflow_invoker.run("version", stdout=subprocess.PIPE)
         except subprocess.CalledProcessError as err:
             log_subprocess_error("airflow version", err, "airflow version failed")
             sys.exit(err.returncode)
         
-        if version.startswith("2."):
+        if proc.stdout.startswith("2."):
             try:
                 self.airflow_invoker.run("db", "init")
             except subprocess.CalledProcessError as err:
                 log_subprocess_error("airflow db init", err, "airflow db init failed")
                 sys.exit(err.returncode)
-        elif version.startswith("3."):
+        elif proc.stdout.startswith("3."):
             try:
                 self.airflow_invoker.run("db", "migrate")
             except subprocess.CalledProcessError as err:
                 log_subprocess_error("airflow db migrate", err, "airflow db migrate failed")
                 sys.exit(err.returncode)
         else:
-            log.warning("unhandled airflow version for db initialization")
+            log.error("unhandled airflow version for database initialization")
