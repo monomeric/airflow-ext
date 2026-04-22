@@ -118,16 +118,11 @@ class Airflow(ExtensionBase):
                 "config",
                 "generate",
                 "--output-file",
-                str(self.airflow_home / "airflow.cfg"),
-                stdout=False,
+                self.airflow_cfg_path,
             )
         except subprocess.CalledProcessError as err:
             log_subprocess_error("airflow config generate", err, "initial airflow invocation failed")
             sys.exit(err.returncode)
-
-        if proc.stdout:
-            with self.airflow_cfg_path.open("w") as f:
-                f.write(proc.stdout)
 
     def _initdb(self) -> None:
         """Initialize the airflow metadata database."""
