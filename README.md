@@ -13,8 +13,7 @@ Apache Airflow 2.7+ is required, adjustments made for Airflow 3.x compatibility
     pip_url: >
       git+https://github.com/meltano/edk.git@main
       git+https://github.com/monomeric/airflow-ext.git@main
-      apache-airflow[postgres]==3.2.0
-      apache-airflow-providers-fab
+      apache-airflow==3.2.0
       --constraint https://raw.githubusercontent.com/apache/airflow/constraints-3.2.0/constraints-no-providers-${MELTANO__PYTHON_VERSION}.txt
     executable: airflow_invoker
     commands:
