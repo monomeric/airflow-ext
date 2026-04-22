@@ -131,7 +131,7 @@ class Airflow(ExtensionBase):
     def _initdb(self) -> None:
         """Initialize the airflow metadata database."""
         try:
-            self.airflow_invoker.run("db", "init")
+            self.airflow_invoker.run("db", "migrate")
         except subprocess.CalledProcessError as err:
-            log_subprocess_error("airflow db init", err, "airflow db init failed")
+            log_subprocess_error("airflow db migrate", err, "airflow db migrate failed")
             sys.exit(err.returncode)
