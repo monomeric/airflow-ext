@@ -4087,7 +4087,7 @@ files = [
 ]
 
 [[package]]
-name = "meltano-edk"
+name = "meltano.edk"
 version = "0.5.0"
 description = "A framework for building Meltano extensions"
 optional = false
