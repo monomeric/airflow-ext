@@ -2,7 +2,7 @@
 
 Meltano Airflow utility extension
 
-Apache Airflow 2.7+ is required.
+Apache Airflow 2.7+ is required, adjustments made for Airflow 3.x compatibility
 
 ## Example meltano.yml entry
 
@@ -10,8 +10,12 @@ Apache Airflow 2.7+ is required.
   utilities:
   - name: airflow
     namespace: airflow
-    pip_url: git+https://github.com/meltano/airflow-ext.git@main apache-airflow==2.3.3
-      --constraint https://raw.githubusercontent.com/apache/airflow/constraints-2.3.3/constraints-no-providers-3.8.txt
+    pip_url: >
+      git+https://github.com/meltano/edk.git@main
+      git+https://github.com/monomeric/airflow-ext.git@main
+      apache-airflow[postgres]==3.2.0
+      apache-airflow-providers-fab
+      --constraint https://raw.githubusercontent.com/apache/airflow/constraints-3.2.0/constraints-no-providers-${MELTANO__PYTHON_VERSION}.txt
     executable: airflow_invoker
     commands:
       describe:
