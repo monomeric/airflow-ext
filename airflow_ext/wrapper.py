@@ -116,9 +116,10 @@ class Airflow(ExtensionBase):
         try:
             proc = self.airflow_invoker.run(
                 "config",
-                "list",
-                "--defaults",
-                stdout=subprocess.PIPE,
+                "generate",
+                "--output-file",
+                str(self.airflow_home / "airflow.cfg"),
+                stdout=False,
             )
         except subprocess.CalledProcessError as err:
             log_subprocess_error("airflow config generate", err, "initial airflow invocation failed")
