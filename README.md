@@ -50,7 +50,11 @@ Apache Airflow 2.7+ is required, adjustments made for Airflow 3.x compatibility
     - name: webserver.web_server_port
       label: Webserver Port
       value: 8080
-      env: AIRFLOW__WEBSERVER__WEB_SERVER_PORT
+      env: AIRFLOW__API__PORT
+      description: |
+        The web and API server port, formerly set by AIRFLOW__WEBSERVER__WEB_SERVER_PORT in Airflow 2.x. If this variable
+        remains unset with Airflow 3.x, configuration generation may fail as the airflow.cfg file catches debug logs through
+        'stdout' upon creation by 'airflow config list --defaults'.
     - name: logging.base_log_folder
       label: Base Log Folder
       value: $MELTANO_PROJECT_ROOT/.meltano/utilities/airflow/logs
