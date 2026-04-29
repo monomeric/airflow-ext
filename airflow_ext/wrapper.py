@@ -130,14 +130,13 @@ class Airflow(ExtensionBase):
 
     def _initdb(self) -> None:
         """Initialize the airflow metadata database."""
-        
         # Airflow version 2 accepts "db init" while version 3 expects "db migrate"
         try:
             proc = self.airflow_invoker.run("version", stdout=subprocess.PIPE)
         except subprocess.CalledProcessError as err:
             log_subprocess_error("airflow version", err, "airflow version failed")
             sys.exit(err.returncode)
-        
+
         if proc.stdout.startswith("2."):
             try:
                 self.airflow_invoker.run("db", "init")
