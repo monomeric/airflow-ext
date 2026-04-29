@@ -108,6 +108,10 @@ meltano invoke airflow users create -u admin@localhost -p password --role Admin 
 
 # start the scheduler, backgrounding the process
 meltano invoke airflow scheduler &
+# start the triggerer, backgrounding the process
+meltano invoke airflow triggerer &
+# start the dag processor, backgrounding the process
+meltano invoke airflow dag-processor &
 # start the webserver, keeping it in the foreground
-meltano invoke airflow webserver
+meltano invoke airflow api-server
 ```
